@@ -1,0 +1,14 @@
+*.pyc
+*.log
+*.log.*
+*.sqlite*
+__pycache__
+pysrc
+buildbot
+config/master.cfg.sample
+pullrequests/build
+pullrequests/dist
+pullrequests/node_modules
+pullrequests/*.egg-info
+deploy/prepare_done
+deploy/env.sh

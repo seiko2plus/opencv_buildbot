@@ -1,0 +1,32 @@
+{
+    "name": "opencv-pullrequests",
+    "engines": {
+        "node": ">=0.10.0",
+        "npm": ">=1.4.0"
+    },
+    "resolutions": {
+        "webpack/uglifyjs-webpack-plugin": "^1.2.5"
+    },
+    "devDependencies": {
+        "@uirouter/angularjs": "^1.0.15",
+        "angular": "^1.5.0",
+        "angular-mocks": "^1.5.0",
+        "coffee-loader": "^0.9.0",
+        "coffeescript": "^1.12.6",
+        "css-loader": "^0.28.5",
+        "extract-text-webpack-plugin": "^3.0.2",
+        "file-loader": "^0.11.2",
+        "install": "^0.11.0",
+        "jade": "^1.11.0",
+        "jade-html-loader": "0.0.3",
+        "less": "^2.7.2",
+        "less-loader": "^4.0.5",
+        "ng-classify-loader": "0.0.3",
+        "raw-loader": "^0.5.1",
+        "source-map-loader": "^0.2.1",
+        "style-loader": "^0.18.2",
+        "webpack": "^3.9.1"
+    },
+    "license": "Apache-2.0",
+    "dependencies": {}
+}

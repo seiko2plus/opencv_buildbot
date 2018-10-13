@@ -1,0 +1,29 @@
+.pullrequests
+    .load-indicator(ng-hide='c.requests')
+        .spinner
+            i.fa.fa-circle-o-notch.fa-spin.fa-2x
+            p loading
+    div(ng-show="c.requests.length==0")
+        p no pullrequests exists
+
+    table.table.table-striped.table-bordered(ng-show="c.requests && c.requests.length > 0")
+        tr.first-row
+            th.pid id
+            th Title
+            th Recent Builds
+            th Author
+
+        tr(ng-repeat="request in c.requests")
+            td.pid
+                a(href="{{request.url}}" target="_blank") {{request.id}}
+                div {{request.base_branch}}
+            td.title
+                a(href="{{request.url}}" target="_blank") {{request.title}}
+            td.builds
+                span(ng-repeat="build in request.builds")
+                    a(href="{{build.url}}")
+                        span(class="badge-status {{build.class}}") {{build.name}}
+            td
+                span {{request.author}}
+                span &nbsp;/&nbsp;
+                span {{request.assignee}}

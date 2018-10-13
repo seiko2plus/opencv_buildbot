@@ -1,0 +1,67 @@
+.pullrequests {
+    padding: 10px;
+
+    .table-fixedwidth {
+        width: initial;
+    }
+    .load-indicator {
+        width: 100%;
+        height: 100%;
+        z-index: 900;
+        background-color: #ffffff;
+        display: table;
+
+        .spinner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+
+            p {
+                font-weight: 300;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    table, table tr > td, table tr > th {
+        border: none;
+    }
+
+    table tr > td, table tr > th {
+        border-top:1px solid #ccc;
+        width: 10%;
+    }
+
+    .pid {
+        text-align:center;
+    }
+
+    .pid > div {
+        margin-top:2px;
+        padding-top:2px;
+        border-top:1px solid #ccc;
+    }
+
+    .title {
+        width: 30%;
+    }
+
+    .builds {
+        width: 45%;
+    }
+
+    .tag_row{
+        td {
+            margin:0px;
+            padding:0px;
+        }
+        span {
+            position: relative;
+            float: left;
+            font-size: 10px;
+            overflow: hidden;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+    }
+}
