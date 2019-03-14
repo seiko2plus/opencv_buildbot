@@ -106,7 +106,6 @@ class TheApp(Application):
 
     @api.route('/', branch=True)
     def static(self, request):
-        return File("/app/pullrequests/opencv_pullrequests/static")
         return File(self.static_dir)
 
 ep = TheApp(__name__, "OpenCV Pullrequests UI")

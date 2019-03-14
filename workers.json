@@ -6,5 +6,13 @@
 	{
 		"name": "xxx", "pass": "xxxx", "tags": ["pullrequests"],
 		"max_builds": 1, "properties": {"parallel": 8}
+	},
+	{
+		"name": "xxx", "pass": "xxx", "tags": ["power9_pullrequests"],
+		"max_builds": 1, "properties": {"parallel": 8}
+	},
+	{
+		"name": "xxx", "pass": "xxx", "tags": ["power9_pullrequests"],
+		"max_builds": 1, "properties": {"parallel": 8}
 	}
 ]

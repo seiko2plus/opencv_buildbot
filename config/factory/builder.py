@@ -131,7 +131,6 @@ class DetermineTests(ShellMixin, BuildStep):
                 },
                 logfiles=None, timeout=20 * 60, maxTime=60 * 60
             )
-            
             step = None
             if test.startswith('python'):
                 if test == 'python3':
@@ -215,7 +214,7 @@ class Builder(BuilderConfig):
                 name='Fetch ' + base, workdir=base,
                 repourl = Interpolate("%%(src:%s:repository)s" % base),
                 codebase=base, mode='full', method='clean',
-                retryFetch=True, haltOnFailure=True,
+                retryFetch=True, retry=(300, 5), haltOnFailure=True,
                 getDescription={'always': True},
             ))
 
@@ -265,16 +264,17 @@ class Builder(BuilderConfig):
                     continue
 
                 val = name_val[1]
+                """
                 if val == '1':
                     val = 'ON'
                 elif val != 'ON':
                     val = 'OFF'
-
+                """
                 name = name_val[0]
                 if name == 'OPENCV_EXTRA_MODULES_PATH':
                     if val == 'OFF':
                         defs.pop(name)
-                else:     
+                else:
                     extra[name] = val
 
             defs.update(extra)
@@ -320,7 +320,7 @@ class Builder(BuilderConfig):
         commands = []
         for p, arg in props.items():
             commands.append('>&2 echo ":%s:"' % p)
-            commands.append("%s %s" % (exe, arg))               
+            commands.append("%s %s" % (exe, arg))
 
         self.addStep(DetermineTests(
             name='Determine tests',

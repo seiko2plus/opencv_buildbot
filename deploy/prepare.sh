@@ -10,10 +10,13 @@ virtualenv --system-site-packages /env
 
 set -x
 
-pip3 install pyOpenSSL pyasn1==0.4.3 service_identity markdown2 simplejson pydevd mock treq six==1.11.0
+(
+    cd /app/deploy
+    pip3 install -r pyrequirements.txt
+)
 
 if [ -z "$DEBUG" ]; then
-    pip3 install buildbot[bundle] buildbot-pkg
+    pip3 install buildbot[bundle,tls] buildbot-pkg
 else
     [ ! -d /app/buildbot ] &&
     (

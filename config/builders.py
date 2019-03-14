@@ -9,10 +9,20 @@ BuilderNamesByCompiler = {}
 
 for ver, env in LinuxCompilers.items():
     for builder in [
-        Builder( 
+        Builder(
             name="Power8 Linux(%s) %s" % (ver, Codebases.owner),
             compiler=env,
             workernames=WorkerTags['pullrequests'],
             codebases=Codebases.repos
-        ),
+        )
     ]: Builders.append(builder); BuilderNames.append(builder.name); BuilderNamesByCompiler[ver] = builder.name
+
+for ver, env in LinuxCompilers.items():
+    for builder in [
+        Builder(
+            name="Power9 Linux(%s) %s" % (ver, Codebases.owner),
+            compiler=env,
+            workernames=WorkerTags['power9_pullrequests'],
+            codebases=Codebases.repos
+        )
+    ]: Builders.append(builder); BuilderNames.append(builder.name); BuilderNamesByCompiler['power9_' + ver] = builder.name

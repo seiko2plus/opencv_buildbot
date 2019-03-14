@@ -5,6 +5,7 @@
 __pycache__
 pysrc
 buildbot
+config/core
 config/master.cfg.sample
 pullrequests/build
 pullrequests/dist

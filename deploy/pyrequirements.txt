@@ -1,0 +1,10 @@
+setuptools
+six
+simplejson
+pyOpenSSL
+pyasn1
+service_identity
+markdown2
+pydevd
+mock
+treq

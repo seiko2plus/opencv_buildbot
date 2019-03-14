@@ -19,9 +19,8 @@ else
     chown appuser:appgroup /app/deploy/prepare_done
 fi
 
-cp /app/deploy/supervisor.conf /etc/supervisor/conf.d/app.conf
 if [ -z "$DEBUG" ]; then
-    exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+    exec /usr/bin/supervisord -n -c /app/deploy/supervisor.conf
 else
     su - appuser -c "DEBUG=${DEBUG} DEBUG_HOST=${DEBUG_HOST} DEBUG_PORT=${DEBUG_PORT} /app/deploy/launch.sh"
 fi

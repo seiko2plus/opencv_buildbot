@@ -27,7 +27,7 @@ class Github():
 
     @callback
     def fetchPulls(self, user, repo, config_prefix = ''):
-        fetch = yield self.fetch("/repos/%s/%s/pulls?state=open" % (user, repo))
+        fetch = yield self.fetch("/repos/%s/%s/pulls?state=open&per_page=200" % (user, repo))
         if not fetch:
             returnValue([])
         pulls = []
@@ -82,8 +82,3 @@ class Github():
             config[config_name[prefix_len:]] = name_val[1]
 
         return config
-
-
-
-
-

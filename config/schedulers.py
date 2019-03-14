@@ -16,7 +16,7 @@ Schedulers.append(ForceScheduler(
             choices=['debug', 'release'], default='release'
         ),
         StringParameter(name='cmake_definitions', label='cmake definitions', default=''),
-        StringParameter(name='disable_tests', label='disable accuracy tests', default='java, rgbd, shape'),
+        StringParameter(name='disable_tests', label='disable accuracy tests', default='rgbd, shape'),
         StringParameter(name='disable_perf_tests', label='disable performance tests', default='stereo, tracking'),
         StringParameter(name='filter_tests', label='filter accuracy tests', default=''),
         StringParameter(name='filter_perf_tests', label='filter performance tests', default='')
@@ -33,7 +33,7 @@ for b in Codebases.branches:
             codebases=bases,
             properties=dict(
                 build_type=bdt,
-                disable_tests='java, rgbd, shape',
+                disable_tests='rgbd, shape',
                 disable_perf_tests='stereo, tracking'
             )
         ))

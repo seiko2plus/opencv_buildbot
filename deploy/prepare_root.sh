@@ -2,8 +2,8 @@
 
 set -x
 
-groupadd -r appgroup -g $APP_GID
-useradd -u $APP_UID -r -g appgroup -d /home/appuser -m -s /bin/bash -c "App user" appuser
+addgroup -g $APP_GID appgroup
+adduser -D -u $APP_UID -s /bin/bash -G appgroup appuser
 
 mkdir -p /env
 chown -R appuser:appgroup /env

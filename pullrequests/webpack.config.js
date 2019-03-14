@@ -63,9 +63,9 @@ module.exports = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { 
-                enforce: "pre", 
-                test: /\.js$/, 
+            {
+                enforce: "pre",
+                test: /\.js$/,
                 loader: "source-map-loader",
             },
             {
@@ -85,8 +85,8 @@ module.exports = {
                 })
             },
             { test: /\.jade$/, loader: 'raw-loader!jade-html-loader' },
-            /*{ 
-                test: /\.js$/, 
+            /*{
+                test: /\.js$/,
                 loader: "babel-loader",
                 query: {
                     "presets": ["@babel/preset-env"]

@@ -22,7 +22,7 @@ opencv = dict(
     filter_pr=filter_pr,
     config_prefix='pw_',
     config=dict(
-        compilers=dict(type='builders', default=['gcc-5'], search=BuilderNamesByCompiler),
+        compilers=dict(type='builders', default=['gcc-5', 'power9_gcc-6'], search=BuilderNamesByCompiler),
         with_opencv=dict(type='sourcestamp', name='opencv', codebase='opencv_merge', default={}),
         with_opencv_contrib=dict(type='sourcestamp', name='opencv_contrib', codebase='opencv_contrib_merge'),
         with_opencv_extra=dict(type='sourcestamp', name='opencv_extra', codebase='opencv_extra_merge'),
