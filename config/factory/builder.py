@@ -182,8 +182,14 @@ class Builder(BuilderConfig):
         self.os = kwargs.pop('os', 'linux')
         self.compiler = kwargs.pop('compiler', None)
         self.steps = kwargs.pop('steps', [])
+        self.cmake_definitions = kwargs.pop('cmake_definitions', {})
+        # override property cmake_definitions
+        self.force_cmake_definitions = kwargs.pop('force_cmake_definitions', {})
         self.factory = BuildFactory()
-        BuilderConfig.__init__(self, name=self.name, workernames=self.workers, factory=self.getSteps())
+        BuilderConfig.__init__(self,
+            name=self.name, workernames=self.workers,
+            factory=self.getSteps(), properties=kwargs.pop('properties', {})
+        )
 
     def addStep(self, step):
         self.factory.addStep(step)
@@ -235,7 +241,7 @@ class Builder(BuilderConfig):
 
     def stepCmake(self):
         @renderer
-        def cmake_definitions(props):
+        def init_cmake_definitions(props):
             defs = {}
             defs['BUILD_SHARED_LIBS'] = 'ON'
             defs['BUILD_EXAMPLES'] = 'ON'
@@ -250,10 +256,12 @@ class Builder(BuilderConfig):
                 defs["CMAKE_CXX_COMPILER"] = self.compiler['CXX']
 
             defs['OPENCV_EXTRA_MODULES_PATH'] = props.getProperty('builddir') + '/opencv_contrib/modules'
+            defs.update(self.cmake_definitions)
 
             extra = {}
             cdef_str = props.getProperty('cmake_definitions', None)
             if cdef_str is None:
+                defs.update(self.force_cmake_definitions)
                 return defs
 
             cdef_list = re.sub(r"\s+", '', cdef_str).split(',')
@@ -278,11 +286,12 @@ class Builder(BuilderConfig):
                     extra[name] = val
 
             defs.update(extra)
+            defs.update(self.force_cmake_definitions)
             return defs
 
         self.addStep(CMake(
             name="cmake", descriptionDone='cmake', description='cmake',
-            path="../opencv", definitions=cmake_definitions,
+            path="../opencv", definitions=init_cmake_definitions,
             lazylogfiles=True, warnOnWarnings=True, haltOnFailure=True,
             logfiles=dict(
                 CMakeOutput='CMakeFiles/CMakeOutput.log',
