@@ -20,7 +20,7 @@ class Request():
         self.pr = pr
         self.builders, self.stamps, self.props = pulls.config.parse(pr)
         self._reason = 'pullrequest #%d'% pr['id']
-        self._updateBaseStamps()
+        self._updateBaseStamps(pr)
 
     def getState(self):
         return dict(
@@ -133,10 +133,10 @@ class Request():
         return (rid, breq['number'], status)
 
 
-    def _updateBaseStamps(self):
+    def _updateBaseStamps(self, pr):
         self.baseStamps = self.pulls.stamps.copy()
         for stamp in self.baseStamps:
-            stamp['branch'] = self.pr['base_branch']
+            stamp['branch'] = pr['base_branch']
 
     def _isPropsChanged(self, props):
         if len(self.props) != len(props):
@@ -158,7 +158,7 @@ class Request():
 
     def _isChanged(self, pr, stamps, props):
         if self.pr['base_branch'] != pr['base_branch']:
-            self._updateBaseStamps()
+            self._updateBaseStamps(pr)
             return True
         if self.pr['head_sha'] != pr['head_sha']:
             return True
