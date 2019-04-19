@@ -6,11 +6,11 @@ def _env(cc, cxx, path):
 	env['CXX'] = "%s/%s" % (path, cxx)
 	return env
 
-def _getGCC(ver, path='/usr/bin'):
+def _getGCC(ver, path='/usr/lib/ccache'):
 	nm = "gcc-%s" %ver
 	return { nm: _env(nm, "g++-%s" %ver, path) }
 
-def _getClang(ver, path='/usr/bin'):
+def _getClang(ver, path='/usr/lib/ccache'):
 	nm = "clang-%s" %ver
 	return { nm: _env(nm + '.0', "clang++-%s.0" %ver, path)}
 
