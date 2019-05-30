@@ -205,6 +205,16 @@ class Builder(BuilderConfig):
         return self.factory
 
     def stepCleanupBuild(self):
+        # workaround, buildbot immediate terminate launched processes(SIGKILL),
+        # git has no chance for proper cleanup of .lock files
+        for base in self.codebases:
+            self.addStep(ShellCommand(
+                name="Remove git locks " + base,
+                command='rm -f .git/index.lock',
+                workdir=base,
+                hideStepIf=lambda result, s: result == SUCCESS,
+                haltOnFailure=True
+            ))
         self.addStep(RemoveDirectory(
             dir='build', hideStepIf=lambda result, s: result == SUCCESS,
             haltOnFailure=True
