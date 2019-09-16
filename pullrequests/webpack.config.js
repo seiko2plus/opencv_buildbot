@@ -10,17 +10,8 @@ const extractLess = new ExtractTextPlugin({
 pluginName = "pullrequests"
 pluginPythonName = "opencv_pullrequests"
 
-function isExternal(module) {
-  var context = module.context;
-
-  if (typeof context !== 'string') {
-    return false;
-  }
-
-  return context.indexOf('node_modules') !== -1;
-}
-
 module.exports = {
+    // devtool: "inline-source-map",
 
     entry: {
         scripts: "./src/module/main.module.coffee",
@@ -44,10 +35,6 @@ module.exports = {
             }
         })
     ],
-    // Enable sourcemaps for debugging webpack's output.
-    // note: changed from source-map to inline-source-map to make debugging in Karma easier,
-    //   not really sure what difference is.
-    devtool: "inline-source-map",
 
     resolve: {
         extensions: [".js", ".json"],
@@ -84,7 +71,7 @@ module.exports = {
                 fallback: "style-loader"
                 })
             },
-            { test: /\.jade$/, loader: 'raw-loader!jade-html-loader' },
+            { test: /\.jade$/, loader: 'pug-loader' },
             /*{
                 test: /\.js$/,
                 loader: "babel-loader",

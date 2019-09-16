@@ -11,5 +11,6 @@ pullrequests/build
 pullrequests/dist
 pullrequests/node_modules
 pullrequests/*.egg-info
+pullrequests/opencv_pullrequests/static
 deploy/prepare_done
 deploy/env.sh
